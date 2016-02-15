@@ -53,6 +53,7 @@ unsigned long pirStartCalibrationTime;
 const int pirCalibrationTime = 30; //come da datasheet (up to 60 secs)
 boolean pirCalibrated; //se true si può leggere il valore restituito dal sensore
 const int flameSensorPin = 2; //the analog pin connected to the flame sensor's output
+const int buzzerPin = 13;
 
 //Gestione stringa in input
 String inputString = "";         // a string to hold incoming data
@@ -121,6 +122,9 @@ void setup(void) {
   garage.write(posServoGarage);
   lastGarageServoCommand = millis();
   garageOpen = false;
+
+  pinMode(buzzerPin, OUTPUT);
+  digitalWrite(buzzerPin, LOW);
 
   Serial.begin(115200);
   //mySerial.begin(9600);
