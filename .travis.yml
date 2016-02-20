@@ -13,5 +13,8 @@ install:
   - arduino --install-library "OneWire"
   - ln -s /usr/local/share/arduino/libraries/DallasTemperature $PWD/libs/DallasTemperature
   - arduino --install-library "DallasTemperature"
+  - ln -s /usr/local/share/arduino/libraries/U8glib $PWD/libs/U8glib
+  - arduino --install-library "U8glib"
+  
 script:
   - arduino --verify --board arduino:avr:uno $PWD/domHomeArduino.ino
