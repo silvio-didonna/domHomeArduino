@@ -54,6 +54,7 @@ const int pirCalibrationTime = 30; //come da datasheet (up to 60 secs)
 boolean pirCalibrated; //se true si può leggere il valore restituito dal sensore
 const int flameSensorPin = 2; //the analog pin connected to the flame sensor's output
 const int buzzerPin = 13;
+bool buzzerOn;
 
 //Gestione stringa in input
 String inputString = "";         // a string to hold incoming data
@@ -125,6 +126,7 @@ void setup(void) {
 
   pinMode(buzzerPin, OUTPUT);
   digitalWrite(buzzerPin, LOW);
+  buzzerOn = false;
 
   Serial.begin(115200);
   //mySerial.begin(9600);
@@ -172,7 +174,11 @@ void loop(void) {
 
   if (stringComplete) {
 
-    if (inputString.equals("therm1\n")) {
+    if (inputString.equals("buzzer1\n")) {
+      setBuzzer();
+      Serial.println(buzzerOn ? "true" : "false");
+    }
+    else if (inputString.equals("therm1\n")) {
       Serial.println(temperature, resolution - 8); //Temperatura con le giuste cifre decimali
     }
     else if (inputString.equals("lm1\n")) {
@@ -346,6 +352,17 @@ void setGarage () {
       garage.detach();
   }
   garage.write(posServoGarage);
+}
+
+void setBuzzer () {
+    if (buzzerOn == false) { //se è spento lo accende
+    digitalWrite(buzzerPin, HIGH);
+    buzzerOn = true;
+  }
+  else {// se è acceso lo spegne
+    digitalWrite(buzzerPin, LOW);
+    buzzerOn = false;
+  }
 }
 
 void initThermometer() {
