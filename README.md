@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/tnw513/domHomeArduino.svg?token=HfjjsxUxWbpxK7P9Cq3v&branch=master)](https://travis-ci.com/tnw513/domHomeArduino)
+[![Build Status](https://travis-ci.org/tnw513/domHomeArduino.svg?branch=master)](https://travis-ci.org/tnw513/domHomeArduino)
 
 # domHome #
 
